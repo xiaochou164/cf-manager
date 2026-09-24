@@ -31,6 +31,7 @@
 
 - [AI / Remote MCP 多账号统一运维改造方案](docs/AI-MCP-ROADMAP.zh-CN.md)
 - [Codex 交钥匙实施指令](CODEX_IMPLEMENTATION.md)
+- [ChatGPT 自定义插件 / MCP 接入设计](docs/CHATGPT-PLUGIN.md)
 
 ---
 
