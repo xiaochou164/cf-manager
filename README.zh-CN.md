@@ -23,6 +23,16 @@
 - **核心能力**：可视化管理域名 DNS、Workers、Pages 与 KV/D1/R2 存储；内置 AI 推理与网页渲染的本地调试能力；提供**仅限内网本地使用**的 OpenAI 兼容适配接口。
 - **不是什么**：不是对外提供公共 AI / 渲染中转的服务；OpenAI 兼容接口仅限本人内网本地调试，严禁用于转售或违反 Cloudflare 服务条款的场景。
 
+## AI / Remote MCP 改造计划
+
+本 Fork 计划在保留现有 Web 管理后台的基础上，增加 **Remote MCP、多 Cloudflare 独立账号 AI 路由、AI 权限控制、高风险审批、幂等与完整审计**，让人工操作与 AI Agent 共用同一套账号库和 Cloudflare API 服务层。
+
+详细设计与实施阶段见：
+
+- [AI / Remote MCP 多账号统一运维改造方案](docs/AI-MCP-ROADMAP.zh-CN.md)
+
+---
+
 ## 在线演示
 
 | | |
