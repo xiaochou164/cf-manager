@@ -2,6 +2,7 @@
 
 > 状态：Design / Implementation Plan  
 > 执行入口：实际开发请同时读取仓库根目录 [`CODEX_IMPLEMENTATION.md`](../CODEX_IMPLEMENTATION.md)，该文件定义 WP0→WP12 的实现顺序、测试门槛、安全约束和最终验收标准。  
+> ChatGPT 插件规范：[`CHATGPT-PLUGIN.md`](CHATGPT-PLUGIN.md)，用于 Direct Personal Plugin、OAuth 2.1、Plugin Packaging 与可选 MCP Apps UI。  
 > 目标仓库：`xiaochou164/cf-manager`  
 > 基线：保留现有 CF Manager Web 管理后台与 Cloudflare Pages/Worker 部署能力，在同一套账号库和业务层上增加 Remote MCP，使人工操作与 AI 运维共享账号、权限、审计和 Cloudflare API 路由。
 
@@ -17,6 +18,7 @@
 - **Multi Account**：支持多个彼此独立的 Cloudflare 登录账号，不要求它们属于同一个 Cloudflare User。
 - **Zero-server-first**：优先维持 Cloudflare Pages/Workers + D1 + KV 架构，个人使用场景以 Cloudflare Free Plan 可运行作为设计目标。
 - **Backward compatible**：现有管理后台、Docker 版和现有 API 尽量不破坏。
+- **ChatGPT Plugin Ready**：Remote MCP 必须可被 ChatGPT Developer Mode 直接接入，并支持标准 OAuth 2.1；后续可生成 portable Plugin package。
 
 最终使用体验：
 
