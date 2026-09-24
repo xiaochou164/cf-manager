@@ -1,6 +1,7 @@
 # CF Manager — AI / Remote MCP 多账号统一运维改造方案
 
 > 状态：Design / Implementation Plan  
+> 执行入口：实际开发请同时读取仓库根目录 [`CODEX_IMPLEMENTATION.md`](../CODEX_IMPLEMENTATION.md)，该文件定义 WP0→WP12 的实现顺序、测试门槛、安全约束和最终验收标准。  
 > 目标仓库：`xiaochou164/cf-manager`  
 > 基线：保留现有 CF Manager Web 管理后台与 Cloudflare Pages/Worker 部署能力，在同一套账号库和业务层上增加 Remote MCP，使人工操作与 AI 运维共享账号、权限、审计和 Cloudflare API 路由。
 
