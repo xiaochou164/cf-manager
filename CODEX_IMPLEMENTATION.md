@@ -4,6 +4,7 @@
 
 > 本文件是实现指令，不是愿景文档。  
 > 设计依据：`docs/AI-MCP-ROADMAP.zh-CN.md`。  
+> ChatGPT 插件兼容规范：`docs/CHATGPT-PLUGIN.md`（强制）。  
 > 目标：在 **不破坏现有 CF Manager Web 管理后台** 的前提下，把本 Fork 实现为可部署、可测试、可审计的 **Human + AI Cloudflare 多账号 Operations Control Plane**。
 
 ---
@@ -29,6 +30,8 @@
 13. Docker 版本不能被破坏；Worker MVP 稳定后再补齐 Docker parity。
 14. CI 必须通过。
 15. 不允许以“后续再实现”为理由留下 MVP 必需功能的空壳。
+16. ChatGPT 个人/自定义插件必须可通过标准 Remote MCP + OAuth 2.1 接入；静态 MCP Secret 仅作为通用客户端兼容方式。
+17. 最终必须生成并验证可移植 Plugin package（plugin.json + mcp.json + skills）。
 
 实现过程中以本文件为执行约束，以 `docs/AI-MCP-ROADMAP.zh-CN.md` 为设计说明。若两者有冲突，以本文件中的安全边界和验收条件优先。
 
@@ -1786,3 +1789,30 @@ Codex 不得：
 > Codex 具体怎么做、按什么顺序做、怎么证明做完了。
 
 实施中必须同时保留两份文档。
+
+
+---
+
+# 45. ChatGPT Plugin 兼容要求（强制）
+
+实现时同时读取 `docs/CHATGPT-PLUGIN.md`。
+
+本节修正原文中“仅以 MCP_AUTH_SECRET 作为 MVP 鉴权”的假设：
+
+- `MCP_AUTH_SECRET` 继续支持 Generic MCP Client。
+- ChatGPT Plugin 必须支持符合 MCP Authorization 规范的 OAuth 2.1。
+- ChatGPT OAuth 使用 Authorization Code + PKCE S256。
+- 暴露 Protected Resource Metadata 与 Authorization Server Metadata。
+- Tool 根据真实权限声明 securitySchemes。
+- Tool annotation 必须与副作用一致。
+- OAuth Scope 与 Account AI Permission 取交集，不能互相替代。
+- ChatGPT Host confirmation 不能替代 CF Manager 的 HIGH/CRITICAL Approval。
+- MVP 支持 ChatGPT Developer Mode 直接以 `https://<domain>/mcp` 创建个人插件。
+- WP12 必须增加 portable Plugin package generator：
+  - `plugin.json`
+  - `mcp.json`
+  - `skills/cloudflare-ops/SKILL.md`
+- 部署 URL 不得硬编码进仓库；由生成脚本注入。
+- 增加 ChatGPT OAuth / package schema acceptance tests。
+
+最终验收中，如果 Generic MCP PASS 但 ChatGPT OAuth / Plugin 连接未完成，不得标记“交钥匙完成”。
